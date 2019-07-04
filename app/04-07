@@ -1,0 +1,79 @@
+MODULES
+
+why MODULES?
+-allow encapsulation
+-easily reusable
+-create higher-level abstractions
+
+The API exposed by a module is defined by the items that are exported from the module
+-using the word exported-we can export interfaces, functions, classes
+
+EXPORT STATEMENTS
+//person.ts
+
+interface Person{}
+function hireDeveloper():void{}
+class Employee{}
+class Manager{} //not accessible outside the module
+export {Person, hireDeveloper, Employee as StaffMember}
+
+
+-ways to import from a module
+
+-import {Person, hireDeveloper} from './person';
+-once the modules are imported they can be used like any other class or interface
+
+example:
+import {StaffMember as CoWorker} from './person'
+-import StaffMember from person and refer to it as CoWorker
+
+
+how to import an entire module
+import * as HR from './person';
+------------^name we want to refer to the imported module
+-> i can then access items in that module using the alias given
+ex: HR.hireDeveloper();
+
+RELATIVE IMPORTS
+
+--relative references used when refering to our own modules
+
+import {Laptop} from '/hardware';
+import { Developer } from './person';
+import { NewHire } from '../HR/recruiting';
+
+//non-relative IMPORTS
+---third party modules 
+
+import * as $ from 'jquery';
+import * as lodash from 'lodash'
+-don't include any reference to paths 
+
+
+MODULE RESOLUTION STRATEGIES
+
+tsc --moduleResolution Classic | Node
+-> Classic mode is available primarily for backend
+ 
+ Classic             |           Node
+ default when emmit  | Default when emmit CommonJs 
+AMD, System or ES2015| or UMD modules
+modules              |
+Simple               | Closely mirrors Node module resolution
+Less Configurable    |  More Configurable
+
+Resolving Classic Relative IMPORTS
+
+Using Node Relative IMPORTS
+
+
+TYPE DECLARATION FILES
+
+--typescript wrappers for JavaScript libaries
+-types for variables, functions, etc
+-define valid property names
+-define function params
+
+
+INSTALLING TYPE DECLARATION FILES
+-npm is the recommended tool
